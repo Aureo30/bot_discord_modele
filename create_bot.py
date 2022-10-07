@@ -1,0 +1,9 @@
+name_fichier = input(str("Quel est le nom de votre fichier : "))
+new_token = input("Quel est le token de votre bot : ")
+myFile = open(f"{name_fichier}.py", "w+")
+
+myFile.write(f'import discord\nfrom discord.ext import commands, tasks\nintents = discord.Intents.default()\nintents.members = True\nintents.dm_messages = True\nintents.dm_typing= True\nbot = commands.Bot(command_prefix="#", description="bot créé par Aureo#0752", help_command=None, intents=intents)\n@bot.command\nasync def help(ctx):\n    embed = discord.Embed(title = "**Liste des commandes**", description = "les commandes de Onizuka", url="https://www.youtube.com/channel/UC63cDEWkTlQ1PhqenmF0WGQ")\n    embed.set_thumbnail(url = "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Femoji.gg%2Fassets%2Femoji%2F5061_the_rules.png&f=1&nofb=1")\n    embed.add_field(name = "Listes des commandes du bot onizuka",value="les commande du bot", inline=False)\n    embed.set_footer(text = "Bot créé par Aureo#0752")\n    await ctx.send(embed = embed)\n@bot.listen()\nasync def on_ready():\n    print("ready")\n@commands.has_permissions(ban_members = True)\nasync def ban(ctx, user : discord.User, *, reason):\n    reason = "".join(reason)\n    await ctx.guild.ban(user, reason = reason)\n    embed = discord.Embed(title = "**Banissement**", description = "Un modérateur à banni un membre", url="https://www.youtube.com/channel/UC63cDEWkTlQ1PhqenmF0WGQ")\n    embed.set_thumbnail(url = "https://emoji.discord.st/emojis/f8a71635-4645-4522-a655-cbe998556907.png?filename=chika_ban.png")\n    embed.add_field(name = "Le membre",value = user.name + "à été banni", inline=True)\n    embed.add_field(name = "Raison : ", value = reason, inline=True)\n    await ctx.send(embed = embed)\nbot.run("{new_token}")')
+
+myFile.close()
+
+ 
